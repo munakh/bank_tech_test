@@ -1,4 +1,5 @@
 require_relative 'statement'
+require_relative 'transaction'
 class Account
 
   attr_reader :balance, :statement
@@ -15,6 +16,11 @@ class Account
 
   def withdraw(amount)
     @balance = @balance -= amount
+  end
+
+  def new_transaction
+    transaction = Transaction.new(credit, debit, @balance)
+    @statement.line_items << transaction
   end
 
 end
