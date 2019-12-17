@@ -25,11 +25,4 @@ describe Account do
     expect(account.balance).to eq 50
   end
 
-  
-  #
-  # it 'should include new transactions' do
-  #   @transactions << transaction
-  #   expect(@transactions).to eq [transaction]
-  # end
-
 end

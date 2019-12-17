@@ -2,19 +2,12 @@ require 'statement'
 
 describe Statement do
   subject(:statement) { described_class.new }
-  let(:transaction) { Transaction.new(100, nil, 100) }
-  let(:transactions) { double :transactions }
-
-  it 'should have no transactions to begin with' do
-    expect(statement.print).to eq []
-  end
+  let(:transactions) { [transaction1, transaction2]}
+  let(:transaction1) { double(:transaction1, date: "17-12-2019", debit: "0", credit: "100", balance: "100") }
+  let(:transaction2) { double(:transaction2, date: "18-12-2019", debit: "5", credit: "0", balance: "5") }
 
   it 'displays all transactions' do
-    statement.add(transaction)
-    # date = Time.now.strftime("%d-%m-%Y")
-    p statement.print
-    expect(statement.print).to eq [transaction]
-    expect(transaction.debit).to eq nil
+    expect(statement.print(transactions)).to eq "date || credit || debit || balance\n18-12-2019 || 0 || 5 || 5\n17-12-2019 || 100 || 0 || 100"
   end
-  
+
 end
