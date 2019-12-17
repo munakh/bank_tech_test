@@ -1,12 +1,24 @@
+require_relative 'account'
+require_relative 'transaction'
 class Statement
 
-  attr_reader :line_items
+  attr_accessor :transactions
 
-  def initialize
-    @line_items = []
+  Header = "date || credit || debit || balance\n"
+
+  def initialize(transactions=[])
+    @transactions = transactions
   end
 
-  def header
-    "date || credit || debit || balance"
+  def add(transaction)
+    @transactions << transaction
   end
+
+  def print
+    Header
+    transactions.each do |transaction|
+    "#{transaction.date} + || #{transaction.credit.to_s} || #{transaction.debit.to_s} || #{transaction.balance.to_s}"
+    end
+  end
+
 end

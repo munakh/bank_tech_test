@@ -3,18 +3,18 @@ require 'statement'
 describe Statement do
   subject(:statement) { described_class.new }
   let(:transaction) { Transaction.new(100, nil, 100) }
+  let(:transactions) { double :transactions }
 
-  it 'has no line items to begin with' do
-    expect(statement.line_items).to eq []
+  it 'should have no transactions to begin with' do
+    expect(statement.print).to eq []
   end
 
-  it 'displays headers for statement' do
-    expect(statement.header).to eq "date || credit || debit || balance"
+  it 'displays all transactions' do
+    statement.add(transaction)
+    # date = Time.now.strftime("%d-%m-%Y")
+    p statement.print
+    expect(statement.print).to eq [transaction]
+    expect(transaction.debit).to eq nil
   end
-
-  it 'should include new transactions' do
-    statement.line_items << transaction
-    expect(statement.line_items).to eq [transaction]
-  end
-
+  
 end

@@ -9,4 +9,8 @@ class Transaction
     @date = Time.now.strftime("%d-%m-%Y")
   end
 
+  def self.create
+    
+  end
+
 end

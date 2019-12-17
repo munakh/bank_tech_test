@@ -2,6 +2,8 @@ require 'account'
 
 describe Account do
   subject(:account) { described_class.new }
+  let(:transaction) { Transaction.new(100, nil, 100) }
+  let(:statement) { Statement.new }
 
   it 'should have an empty balance' do
     expect(account.balance).to eq 0
@@ -22,5 +24,12 @@ describe Account do
     account.withdraw(50)
     expect(account.balance).to eq 50
   end
+
+  
+  #
+  # it 'should include new transactions' do
+  #   @transactions << transaction
+  #   expect(@transactions).to eq [transaction]
+  # end
 
 end
