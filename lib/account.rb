@@ -8,13 +8,14 @@ class Account
 
   def deposit(amount)
     @balance = @balance += amount
+
   end
 
   def withdraw(amount)
     @balance = @balance -= amount
   end
 
-  def print
+  def header
     "date || credit || debit || balance"
   end
 end
