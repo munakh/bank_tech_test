@@ -11,4 +11,9 @@ describe Statement do
     expect(statement.header).to eq "date || credit || debit || balance"
   end
 
+  it 'should include new transactions' do
+    statement.line_items << transaction
+    expect(statement.line_items).to eq [transaction]
+  end
+
 end
