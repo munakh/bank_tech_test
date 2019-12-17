@@ -7,6 +7,11 @@ describe Account do
     expect(account.balance).to eq 0
   end
 
+  it 'creates a new statement with a new account' do
+    myaccount = Account.new
+    expect(myaccount.statement).to be_truthy
+  end
+
   it 'adds the deposit amount to the balance' do
     account.deposit(100)
     expect(account.balance).to eq 100
@@ -16,10 +21,6 @@ describe Account do
     account.deposit(100)
     account.withdraw(50)
     expect(account.balance).to eq 50
-  end
-
-  it 'displays headers for statement' do
-    expect(account.header).to eq "date || credit || debit || balance"
   end
 
 end

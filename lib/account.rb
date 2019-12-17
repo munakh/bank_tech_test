@@ -1,9 +1,11 @@
+require_relative 'statement'
 class Account
 
-  attr_reader :balance
+  attr_reader :balance, :statement
 
-  def initialize(balance=0)
+  def initialize(balance=0, statement=Statement.new)
     @balance = balance
+    @statement = statement
   end
 
   def deposit(amount)
@@ -15,7 +17,4 @@ class Account
     @balance = @balance -= amount
   end
 
-  def header
-    "date || credit || debit || balance"
-  end
 end
