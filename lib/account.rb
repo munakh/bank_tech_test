@@ -2,7 +2,7 @@ require_relative 'statement'
 require_relative 'transaction'
 class Account
 
-  attr_reader :balance, :statement, :transactions
+  attr_reader :balance, :transactions
 
   def initialize(balance=0, statement=Statement.new, transaction=Transaction)
     @balance = balance
@@ -12,23 +12,35 @@ class Account
   end
 
   def deposit(amount)
-    @balance = @balance += amount
-    new_transaction(amount, "")
-    save(amount)
+    add(amount)
+    credit = new_credit(amount)
+    save(credit)
   end
 
   def withdraw(amount)
-    @balance = @balance -= amount
-    new_transaction("", amount)
-    save(amount)
+    minus(amount)
+    debit = new_debit(amount)
+    save(debit)
   end
 
-  def display
+  def summary
     @statement.print(@transactions)
   end
 
-  def new_transaction(credit="", debit="")
-    transaction = Transaction.new(credit, debit, @balance)
+  def add(amount)
+    @balance += amount
+  end
+
+  def minus(amount)
+    @balance -= amount
+  end
+
+  def new_credit(amount)
+    @transaction.new("0", amount, @balance)
+  end
+
+  def new_debit(amount)
+    @transaction.new(amount, "0", @balance)
   end
 
   def save(transaction)

@@ -1,17 +1,13 @@
 require 'account'
 
 describe Account do
-  subject(:account) { described_class.new }
-  let(:transaction) { Transaction.new(100, nil, 100) }
+  subject(:account) { described_class.new(0, statement, transaction_class) }
+  let(:transaction_class) { double(:transaction_class, new: transaction) }
+  let(:transaction) { double(:transaction) }
   let(:statement) { Statement.new }
 
   it 'should have an empty balance' do
     expect(account.balance).to eq 0
-  end
-
-  it 'creates a new statement with a new account' do
-    myaccount = Account.new
-    expect(myaccount.statement).to be_truthy
   end
 
   it 'adds the deposit amount to the balance' do
@@ -24,5 +20,11 @@ describe Account do
     account.withdraw(50)
     expect(account.balance).to eq 50
   end
+
+  it 'registers a transaction' do
+    account.deposit(100)
+    expect(account.transactions).to include transaction
+  end
+
 
 end
