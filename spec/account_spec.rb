@@ -18,4 +18,8 @@ describe Account do
     expect(account.balance).to eq 50
   end
 
+  it 'displays headers for statement' do
+    expect(account.print).to eq "date || credit || debit || balance"
+  end
+
 end
