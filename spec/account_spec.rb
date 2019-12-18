@@ -9,19 +9,13 @@ describe Account do
                     }
   let(:statement) { Statement.new }
 
-  it 'should have an empty balance' do
-    expect(account.balance).to eq 0
-  end
-
   it 'adds the deposit amount to the balance' do
-    account.deposit(100)
-    expect(account.balance).to eq 100
+    expect{ account.deposit(100) }.to change{ account.balance }.by 100
   end
 
   it 'minuses the withdrawal amount from the balance' do
     account.deposit(100)
-    account.withdraw(50)
-    expect(account.balance).to eq 50
+    expect{ account.withdraw(50) }.to change{ account.balance }.by -50
   end
 
   it 'raises an error if withdrawal amount more than balance' do
