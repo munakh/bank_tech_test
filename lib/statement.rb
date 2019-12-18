@@ -19,5 +19,4 @@ class Statement
     end
     display.join("\n")
   end
-
 end
