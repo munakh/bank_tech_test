@@ -24,6 +24,11 @@ describe Account do
     expect(account.balance).to eq 50
   end
 
+  it 'raises an error if withdrawal amount more than balance' do
+    account.deposit(10)
+    expect{ account.withdraw(50) }.to raise_error 'You do not have enough money in your account'
+  end
+
   it 'registers a transaction' do
     account.deposit(100)
     expect(account.transactions).to include transaction

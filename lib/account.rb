@@ -19,6 +19,7 @@ class Account
   end
 
   def withdraw(amount)
+    raise 'You do not have enough money in your account' if @balance < amount
     minus(amount)
     debit = new_debit(amount)
     save(debit)
