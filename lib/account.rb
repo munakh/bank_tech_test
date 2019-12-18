@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require_relative 'statement'
 require_relative 'transaction'
 class Account
-
   attr_reader :balance, :transactions
 
-  def initialize(balance=0, statement=Statement.new, transaction=Transaction)
+  def initialize(balance = 0, statement = Statement.new, transaction = Transaction)
     @balance = balance
     @statement = statement
     @transactions = []
@@ -36,15 +37,14 @@ class Account
   end
 
   def new_credit(amount)
-    @transaction.new("0", amount, @balance)
+    @transaction.new('0', amount, @balance)
   end
 
   def new_debit(amount)
-    @transaction.new(amount, "0", @balance)
+    @transaction.new(amount, '0', @balance)
   end
 
   def save(transaction)
     @transactions << transaction
   end
-
 end
